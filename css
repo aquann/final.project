@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins|Quicksand|Titillium+Web');
+
+h2 {
+    text-align: center;
+    font-size: 50px;
+    color: darkviolet;
+    margin-bottom: -200px;
+}
+
+body {
+    background-repeat: inherit;
+    background-size: 100%;
+
+
+}
+
+/* inside */
+
+div#wrapper {
+    width: 550px;
+    height: 700px;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd_dSQu1K7F0dhdpdrPCHEC7nMhNMnZcXDPt2auyzrTkmrHgvd');
+    margin: 0 auto;
+    margin-top: 250px;
+    padding: 20px;
+}
+
+main {
+    text-align: center;
+    
+}
+
+div#img-container {
+    height: 300px;
+}
+
+h1 {
+    letter-spacing: 0px;
+    text-align: center;
+    font-family: 'Courier New';
+    color: #3973ac;
+    font-size: 55px;
+}
+
+h1 span {
+    margin-left: -30px;
+    font-family: 'impact';
+    color: darkviolet;
+    font-size: 35px;
+}
+
+p {
+    text-align: center;
+    font-size: 25px;
+    color: aquamarine;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.button {
+    height: 80px;
+}
+
+button {
+    background-color: #003333;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    color: indianred;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+}
+
+#footer {
+    font-style: cursive;
+    font-size: 15px;
+    text-align: center;
+    color: hotpink;
+    font-family: monospace;
+}
