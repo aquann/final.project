@@ -1,463 +1,200 @@
-<<<<<<< HEAD
-var host = "api.giphy.com";
-var path = "/v1/gifs/random";
-var apiKey = "LrbR4KEfv97Es2M0bc2vatRnvtC2knWW";
-var tag = "";
-var tag2 = "";
-var tag3 = "";
-var tag4 = "";
-var tag5 = "";
-var tag6 = "";
-var tag7 = "";
-var tag8 = "";
-var tag9 = "";
-var tag10 = "";
-var tag11 = "";
-var tag12 = "";
-var tag13 = "";
-var tag14 = "";
-var tag15 = "";
-var tag16 = "";
-var tag17 = "";
-var tag18 = "";
-var tag19 = "";
-var tag20 = "";
-var tag21 = "";
-var tag22 = "";
-var tag23 = "";
-var tag24 = "";
-var tag25 = "";
-var tag26 = "";
-var tag27 = "";
-var tag28 = "";
-var tag29 = "";
-var tag30 = "";
-var tag31 = ""; 
-var tag32 = "";
-var tag33 = "";
-var tag34 = "";
-var tag35 = "";
-var tag36 = "";
-var tag37 = "";
-var tag38 = "";
-var tag39 = "";
-var tag40 = "";
+var gifQuiz = "Gif Quiz";
+var quiz = [{
+    "question": "How does this character sound like?",
+    "image": "thor.gif",
+    "choices": [
+      "audio",
+      "sound1",
+      "sound1",
+      "sound1"
+    ],
+  },
+  {
+    "question": "How does this character sound like?",
+    "image": "thanos.gif",
+    "choices": [
+      "sound1",
+      "sound1",
+      "sound1",
+      "sound1"
+    ],
+  },
+  {
+    "question": "How does this character sound like?",
+     "image": "thanos.gif",
+    "choices": [
+      "sound1",
+      "sound1",
+      "sound1",
+      "sound1"
+    ],
+  },
+  {
+    "question": "How does this character sound like?",
+   "image": "thanos.gif",
+    "choices": [
+      "sound1",
+      "sound1",
+      "sound1",
+      "sound1"
+    ],
+  },
+  {
+    "question": "How does this character sound like?",
+     "image": "thanos.gif",
+    "choices": [
+      "sound1",
+      "sound1",
+      "sound1",
+      "sound1"
+    ],
+  },
+];
 
-var api = "https://" + host + path + "?api_key=" + apiKey + "&tag=" + tag;
-var bkg = "https://" + host + path + "?api_key=" + apiKey + "&tag=" + tag2;
+var currentquestion = 0,
+  score = 0,
+  submt = true,
+  picked;
+jQuery(document).ready(function($) {
 
-// shows random GIF
-function showGif() {
-    $.getJSON(api, function (giphy) {
-        $.getJSON(bkg, function (bkgGiphy) {
-            audio.src = tracks[trackCount];
-            audio.play();
-            trackCount++;
-            if (trackCount >= tracks.length)
-                trackCount = 0;
-            var gifUrl = giphy.data.image_original_url;
-            var bkurl = gifUrl = giphy.data.image_original_url;
+  function htmlEncode(value) {
+    return $(document.createElement('div')).text(value).html();
+  }
 
-            var gifUrl = giphy.data.image_original_url;
-            var bkgUrl = bkgGiphy.data.image_original_url;
-
-            $('#img-container').prepend('<img src="' + gifUrl + '">');
-            document.body.style.backgroundImage = 'url(' + bkgUrl + ')';
-        })
+  function addChoices(choices) {
+    if (typeof choices !== "undefined" && $.type(choices) == "array") {
+      $('#choice-block').empty();
+      for (var i = 0; i < choices.length; i++) {
+        $(document.createElement('li')).addClass('choice choice-box').attr('data-index', i).text(choices[i]).appendTo('#choice-block');
+      }
+    }
+  }
 
 
+  function nextQuestion() {
+    submt = true;
+    $('#explanation').empty();
+    $('#question').text(quiz[currentquestion]['question']);
+    $('#pager').text('Question ' + Number(currentquestion + 1) + ' of ' + quiz.length);
+    if (quiz[currentquestion].hasOwnProperty('image') && quiz[currentquestion]['image'] != "") {
+      if ($('#question-image').length == 0) {
+        $(document.createElement('img')).addClass('question-image').attr('id', 'question-image').attr('src', quiz[currentquestion]['image']).attr('alt', htmlEncode(quiz[currentquestion]['question'])).insertAfter('#question');
+      } else {
+        $('#question-image').attr('src', quiz[currentquestion]['image']).attr('alt', htmlEncode(quiz[currentquestion]['question']));
+      }
+    } else {
+      $('#question-image').remove();
+    }
+    addChoices(quiz[currentquestion]['choices']);
+    setupButtons();
+  }
+
+  function processQuestion(choice) {
+    if (quiz[currentquestion]['choices'][choice] == quiz[currentquestion]['correct']) {
+      $('.choice').eq(choice).css({
+        'background-color': '#50D943'
+      });
+      $('#explanation').html('<strong>Correct!</strong> ' + htmlEncode(quiz[currentquestion]['explanation']));
+      score++;
+    } else {
+      $('.choice').eq(choice).css({
+        'background-color': '#D92623'
+      });
+      $('#explanation').html('<strong>Incorrect.</strong> ' + htmlEncode(quiz[currentquestion]['explanation']));
+    }
+    currentquestion++;
+    $('#submitbutton').html('NEXT QUESTION »').on('click', function() {
+      if (currentquestion == quiz.length) {
+        endQuiz();
+      } else {
+        $(this).text('Check Answer').css({
+          'color': '#222'
+        }).off('click');
+        nextQuestion();
+      }
+    })
+  }
+
+  function setupButtons() {
+    $('.choice').on('mouseover', function() {
+      $(this).css({
+        'background-color': '#e1e1e1'
+      });
     });
-}
+    $('.choice').on('mouseout', function() {
+      $(this).css({
+        'background-color': '#fff'
+      });
+    })
+    $('.choice').on('click', function() {
+      picked = $(this).attr('data-index');
+      $('.choice').removeAttr('style').off('mouseout mouseover');
+      $(this).css({
+        'border-color': '#222',
+        'font-weight': 700,
+        'background-color': '#c1c1c1'
+      });
+      if (submt) {
+        submt = false;
+        $('#submitbutton').css({
+          'color': '#000'
+        }).on('click', function() {
+          $('.choice').off('click');
+          $(this).off('click');
+          processQuestion(picked);
+        });
+      }
+    })
+  }
 
-// remove the GIF
-function removeGif() {
-    $('#img-container img').remove();
-}
 
-// switches GIF
-function changeGif() {
-    // previous GIF
-    removeGif();
-    // next GIF
-    showGif();
-}
+  function endQuiz() {
+    $('#explanation').empty();
+    $('#question').empty();
+    $('#choice-block').empty();
+    $('#submitbutton').remove();
+    $('#question').text("You got " + score + " out of " + quiz.length + " correct.");
+    $(document.createElement('h2')).css({
+      'text-align': 'center',
+      'font-size': '4em'
+    }).text(Math.round(score / quiz.length * 100) + '%').insertAfter('#question');
+  }
 
-// changes GIF when clicked on button
-$("button").click(function () {
-    changeGif();
+  function init() {
+
+    if (typeof quiztitle !== "undefined" && $.type(quiztitle) === "string") {
+      $(document.createElement('h1')).text(quiztitle).appendTo('#frame');
+    } else {
+      $(document.createElement('h1')).text("Gif Quiz").appendTo('#frame');
+    }
+
+    if (typeof quiz !== "undefined" && $.type(quiz) === "array") {
+
+      $(document.createElement('p')).addClass('pager').attr('id', 'pager').text('Question 1 of ' + quiz.length).appendTo('#frame');
+
+      $(document.createElement('h2')).addClass('question').attr('id', 'question').text(quiz[0]['question']).appendTo('#frame');
+
+      if (quiz[0].hasOwnProperty('image') && quiz[0]['image'] != "") {
+        $(document.createElement('img')).addClass('question-image').attr('id', 'question-image').attr('src', quiz[0]['image']).attr('alt', htmlEncode(quiz[0]['question'])).appendTo('#frame');
+      }
+      $(document.createElement('p')).addClass('explanation').attr('id', 'explanation').html(' ').appendTo('#frame');
+
+
+      $(document.createElement('ul')).attr('id', 'choice-block').appendTo('#frame');
+
+
+      addChoices(quiz[0]['choices']);
+
+
+      $(document.createElement('div')).addClass('choice-box').attr('id', 'submitbutton').text('Check Answer').css({
+        'font-weight': 700,
+        'color': '#222',
+        'padding': '30px 0'
+      }).appendTo('#frame');
+
+      setupButtons();
+    }
+  }
+
+  init();
 });
-=======
-const images = [
-    "https://media.giphy.com/media/azEilDBM6OGfC/giphy.gif",
-    "https://media.giphy.com/media/67RCy4sOyixOg/giphy.gif",
-    "https://media.giphy.com/media/3oxHQG3DcmkbYYob2o/giphy.gif",
-    "https://media.giphy.com/media/z0mMFvI7U27V6/giphy.gif",
-    "https://media.giphy.com/media/l2QZQ53G4vWK9DFYY/giphy.gif"
-    
-];
-
-// ARTIST NAMES
-const artists = [
-	"Megatron",
-    "Ultron",
-    "Thanos",
-    "Superman",
-    "Spiderman"
-];
-
-// KEEPS SCORE
-//var score = {
-//    rap: 0,
-//    alt: 0,
-//    metal: 0,
-//    pop: 0
-//};
-
-// QUESTION 1
-const container = document.getElementById("q1");
-
-for (let i = 0; i < 4; i++) {
-
-    const imgContainer = document.createElement('div');
-    const img = new Image();
-    img.src = images[i];
-    img.id = "img" + i;
-
-    imgContainer.appendChild(img);
-
-    const artistName = document.createElement('p');
-    artistName.textContent = artists[i];
-    imgContainer.append(artistName);
-
-    questionOne.appendChild(imgContainer);
-};
-
-// QUESTION 2
-const container2 = document.getElementById("q2");
-
-for (let i = 4; i < 8; i++) {
-
-    const imgContainer2 = document.createElement('div');
-    const img = new Image();
-    img.src = images[i];
-    img.id = "img" + i;
-
-    //imgContainer2.appendChild(img);
-
-    const artistName = document.createElement('p');
-    artistName.textContent = artists[i];
-    imgContainer2.append(artistName);
-
-    questionTwo.appendChild(imgContainer2);
-};
-
-// QUESTION 3
-const container3 = document.getElementById("q3");
-
-for (let i = 8; i < 12; i++) {
-
-    const imgContainer3 = document.createElement('div');
-    const img = new Image();
-    img.src = images[i];
-    img.id = "img" + i;
-
-    imgContainer3.appendChild(img);
-
-    const artistName = document.createElement('p');
-    artistName.textContent = artists[i];
-    imgContainer3.append(artistName);
-
-    questionThree.appendChild(imgContainer3);
-};
-
-// QUESTION 4
-const container4 = document.getElementById("q4");
-
-for (let i = 12; i < 16; i++) {
-
-    const imgContainer4 = document.createElement('div');
-    const img = new Image();
-    img.src = images[i];
-    img.id = "img" + i;
-
-    imgContainer4.appendChild(img);
-
-    const artistName = document.createElement('p');
-    artistName.textContent = artists[i];
-    imgContainer4.append(artistName);
-
-    questionFour.appendChild(imgContainer4);
-};
-
-// QUESTION 5
-const container5 = document.getElementById("q5");
-
-for (let i = 16; i < 20; i++) {
-
-    const imgContainer5 = document.createElement('div');
-    const img = new Image();
-    img.src = images[i];
-    img.id = "img" + i;
-
-    imgContainer5.appendChild(img);
-
-    const artistName = document.createElement('p');
-    artistName.textContent = artists[i];
-    imgContainer5.append(artistName);
-
-    questionFive.appendChild(imgContainer5);
-};
-
-// ANSWER DIV
-const containerAns = document.getElementById('answer');
-const message = document.createElement('article');
-const message2 = document.createElement('article');
-const message3 = document.createElement('article');
-const message4 = document.createElement('article');
-
-// KEEPS SCORE & MOVES ON TO NEXT QUESTIONS
-// QUESTION 1 IMAGES
-document.getElementById("img0").onclick = function () {
-    score.rap++;
-    console.log(score);
-
-    document.getElementById('questionOne').style.display = "none";
-    document.getElementById('questionTwo').style.display = "grid";
-};
-
-document.getElementById("img1").onclick = function () {
-    score.alt++;
-    console.log(score);
-
-    document.getElementById('questionOne').style.display = "none";
-    document.getElementById('questionTwo').style.display = "grid";
-};
-
-document.getElementById("img2").onclick = function () {
-    score.metal++;
-    console.log(score);
-
-    document.getElementById('questionOne').style.display = "none";
-    document.getElementById('questionTwo').style.display = "grid";
-};
-
-document.getElementById("img3").onclick = function () {
-    score.pop++;
-    console.log(score);
-
-    document.getElementById('questionOne').style.display = "none";
-    document.getElementById('questionTwo').style.display = "grid";
-};
-
-// QUESTION 2 IMAGES
-document.getElementById("img4").onclick = function () {
-    score.rap++;
-    console.log(score);
-
-    document.getElementById('questionTwo').style.display = "none";
-    document.getElementById('questionThree').style.display = "grid";
-};
-
-document.getElementById("img5").onclick = function () {
-    score.alt++;
-    console.log(score);
-
-    document.getElementById('questionTwo').style.display = "none";
-    document.getElementById('questionThree').style.display = "grid";
-};
-
-document.getElementById("img6").onclick = function () {
-    score.metal++;
-    console.log(score);
-
-    document.getElementById('questionTwo').style.display = "none";
-    document.getElementById('questionThree').style.display = "grid";
-};
-
-document.getElementById("img7").onclick = function () {
-    score.pop++;
-    console.log(score);
-
-    document.getElementById('questionTwo').style.display = "none";
-    document.getElementById('questionThree').style.display = "grid";
-};
-
-// QUESTION 3 IMAGES
-document.getElementById("img8").onclick = function () {
-    score.rap++;
-    console.log(score);
-
-    document.getElementById('questionThree').style.display = "none";
-    document.getElementById('questionFour').style.display = "grid";
-};
-
-document.getElementById("img9").onclick = function () {
-    score.alt++;
-    console.log(score);
-
-    document.getElementById('questionThree').style.display = "none";
-    document.getElementById('questionFour').style.display = "grid";
-};
-
-document.getElementById("img10").onclick = function () {
-    score.metal++;
-    console.log(score);
-
-    document.getElementById('questionThree').style.display = "none";
-    document.getElementById('questionFour').style.display = "grid";
-};
-
-document.getElementById("img11").onclick = function () {
-    score.pop++;
-    console.log(score);
-
-    document.getElementById('questionThree').style.display = "none";
-    document.getElementById('questionFour').style.display = "grid";
-};
-
-// QUESTION 4 IMAGES
-document.getElementById("img12").onclick = function () {
-    score.rap++;
-    console.log(score);
-
-    document.getElementById('questionFour').style.display = "none";
-    document.getElementById('questionFive').style.display = "grid";
-};
-
-document.getElementById("img13").onclick = function () {
-    score.alt++;
-    console.log(score);
-
-    document.getElementById('questionFour').style.display = "none";
-    document.getElementById('questionFive').style.display = "grid";
-};
-
-document.getElementById("img14").onclick = function () {
-    score.metal++;
-    console.log(score);
-
-    document.getElementById('questionFour').style.display = "none";
-    document.getElementById('questionFive').style.display = "grid";
-};
-
-document.getElementById("img15").onclick = function () {
-    score.pop++;
-    console.log(score);
-
-    document.getElementById('questionFour').style.display = "none";
-    document.getElementById('questionFive').style.display = "grid";
-};
-
-// QUESTION 5 IMAGES WITH ANSWERS
-document.getElementById("img16").onclick = function () {
-    score.rap++;
-    console.log(score);
-    document.getElementById('questionFive').style.display = "none";
-    document.getElementById('answer').style.display = "block";
-    answer.appendChild(message);
-    answer.appendChild(message2);
-    answer.appendChild(message3);
-    answer.appendChild(message4);
-
-    if (score.rap >= 1) {
-        message.textContent = "You enjoy listening to rap music";
-    } 
-    
-    if (score.alt >= 1) {
-        message2.textContent = "and a bit of alt";
-    }
-
-    if (score.metal >= 1) {
-        message3.textContent = "and a bit of metal";
-    }
-
-    if (score.pop >= 1) {
-        message4.textContent = "and a bit of pop";
-    }
-};
-
-document.getElementById("img17").onclick = function () {
-    score.alt++;
-    console.log(score);
-
-    document.getElementById('questionFive').style.display = "none";
-    document.getElementById('answer').style.display = "block";
-    answer.appendChild(message);
-    answer.appendChild(message2);
-    answer.appendChild(message3);
-    answer.appendChild(message4);
-
-    if (score.alt >= 1) {
-        message.textContent = "You enjoy listening to alternative music.";
-    }
-
-    if (score.rap >= 1) {
-        message2.textContent = "and a bit of rap";
-    } 
-    
-
-    if (score.metal >= 1) {
-        message3.textContent = "and a bit of metal";
-    }
-
-    if (score.pop >= 1) {
-        message4.textContent = "and a bit of pop";
-    }
-};
-
-document.getElementById("img18").onclick = function () {
-    score.metal++;
-    console.log(score);
-
-    document.getElementById('questionFive').style.display = "none";
-    document.getElementById('answer').style.display = "block";
-    answer.appendChild(message);
-    answer.appendChild(message2);
-    answer.appendChild(message3);
-    answer.appendChild(message4);
-
-    if (score.metal >= 1) {
-        message.textContent = "You enjoy listening to metal music.";
-    }
-
-    if (score.rap >= 1) {
-        message2.textContent = "and a bit of rap";
-    } 
-    
-    if (score.alt >= 1) {
-        message3.textContent = "and a bit of alt";
-    }
-
-    if (score.pop >= 1) {
-        message4.textContent = "and a bit of pop";
-    }
-};
-
-document.getElementById("img19").onclick = function () {
-    score.pop++;
-    console.log(score);
-
-    document.getElementById('questionFive').style.display = "none";
-    document.getElementById('answer').style.display = "block";
-    answer.appendChild(message);
-    answer.appendChild(message2);
-    answer.appendChild(message3);
-    answer.appendChild(message4);
-
-    if (score.pop >= 1) {
-        message.textContent = "You enjoy listening to pop music.";
-    } 
-
-    if (score.rap >= 1) {
-        message2.textContent = "and a bit of rap";
-    } 
-    
-    if (score.alt >= 1) {
-        message3.textContent = "and a bit of alt";
-    }
-
-    if (score.metal >= 1) {
-        message4.textContent = "and a bit of metal";
-    }
-};
->>>>>>> 528b2efe488f0139cf26d0b440fe98e10b8d95fd
