@@ -3,13 +3,17 @@
 <html>
 
 <head>
+
     <title>Theme Song Quiz Game</title>
+
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
+
 <h1>Theme Song Quiz Game</h1>
 
+<!--INSTRUCTIONS-->
 <p> <i>Choose which song matches the GIF</i> </p>
 
 <body>
@@ -17,43 +21,43 @@
     <div id="container">
 
         <br>
-
-        <p style="font-family: cursive">If someone falls over in the street you:</p>
-
         <audio controls><source src="music/007-song.mp3" type="audio/mp3"> 
             </audio>
-
+            
+        <div class="hint">
+            <p class="HintText">Was the top agent of the world</p>
+            <button class="HintButton">Hint</button>
+        </div>
         <br>
 
         <br>
-
-        <p style="font-family: arial">Your teenage self could usually be found:</p>
-
         <audio controls><source src="music/Panther-song.mp3" type="audio/mp3"> 
             </audio>
-
+            
+        <div class="hint">
+            <p class="HintText">Was a famous burgular</p>
+            <button class="HintButton">Hint</button>
+        </div>
         <br>
 
         <br>
-
-        <p style="font-family: Palatino ">Your neighbors would describe you as:</p>
-
         <audio controls><source src="music/Pokmon-song.mp3" type="audio/mp3"> 
             </audio>
-
+            
+            <div class="hint">
+            <p class="HintText">He had to catch them all</p>
+            <button class="HintButton">Hint</button>
+        </div>
         <br>
 
         <br>
-
         <p style="font-family: monospace">At the check-out you're trying to buy chocolate, and yet you:</p>
 
         <audio controls><source src="music/Godfather-song.mp3" type="audio/mp3"> 
             </audio>
-
         <br>
 
         <br>
-
         <p style="font-family: comic sans ms">When you see big industrial bins what do you think?</p>
 
         <audio controls><source src="music/Indiana-song.mp3" type="audio/mp3"> 
@@ -107,8 +111,10 @@
         <br>
 
         <button id="q1Btn">Submit</button>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="app.js"></script>
-        
+
     </div>
 
 </body>
