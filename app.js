@@ -1,49 +1,22 @@
-var host = "api.giphy.com";
-var path = "/v1/gifs/random";
-var apiKey = "LrbR4KEfv97Es2M0bc2vatRnvtC2knWW";
-var GIFset1 = ["007", "rick", "", ""]
-var GIFset2 = ["", "", "", ""]
-var GIFset3 = ["", "", "", ""]
-var GIFset4 = ["", "", "", ""]
-var GIFset5 = ["", "", "", ""]
-var GIFset6 = ["", "", "", ""]
-var GIFset7 = ["", "", "", ""]
-var GIFset8 = ["", "", "", ""]
-var GIFset9 = ["", "", "", ""]
-var GIFset10 = ["", "", "", ""]
-
-var api = "https://" + host + path + "?api_key=" + apiKey + "&tag=";
-
-var HintButtons = document.getElementsByClassName("HintButton")
-for (let i = 0; i < HintButtons.length; i++) {
-    var b = HintButtons[i];
-    console.log(b.previousSibling)
-    b.onclick = function () {
-        b.previousElementSibling.style.display = "block"
-    }
-
-}
-
-
 var gifQuiz = "Gif Quiz";
 var quiz = [{
     "question": "How does this character sound like?",
-    "image": "thor.gif",
+    "image": "",
     "choices": [
-      "audio",
-      "sound1",
-      "sound1",
-      "sound1"
+      "https://media.giphy.com/media/Xtij9YYM3NLYk/giphy.gif",
+      "https://media.giphy.com/media/Xtij9YYM3NLYk/giphy.gif",
+      "https://media.giphy.com/media/Xtij9YYM3NLYk/giphy.gif",
+      "https://media.giphy.com/media/Xtij9YYM3NLYk/giphy.gif"
     ],
   },
   {
     "question": "How does this character sound like?",
     "image": "thanos.gif",
     "choices": [
-      "sound1",
-      "sound1",
-      "sound1",
-      "sound1"
+      "https://media.giphy.com/media/Xtij9YYM3NLYk/giphy.gif",
+      "https://media.giphy.com/media/Xtij9YYM3NLYk/giphy.gif",
+      "https://media.giphy.com/media/Xtij9YYM3NLYk/giphy.gif",
+      "https://media.giphy.com/media/Xtij9YYM3NLYk/giphy.gif"
     ],
   },
   {
