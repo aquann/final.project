@@ -1,16 +1,20 @@
-.HintText{
+.HintText {
     display: none;
+}
+
+#instructions{
+    
 }
 
 h1 {
     text-align: center;
     font-size: 50px;
     color: darkviolet;
-    margin-bottom: -200px;
+
 }
 
 body {
-    background-repeat: inherit;
+    text-align: left;
     background-size: 100%;
 
 
@@ -18,11 +22,7 @@ body {
 
 main {
     text-align: center;
-    
-}
 
-div#img-container {
-    height: 300px;
 }
 
 h1 {
@@ -34,7 +34,7 @@ h1 {
 }
 
 h1 span {
-    margin-left: -30px;
+
     font-family: 'impact';
     color: darkviolet;
     font-size: 35px;
@@ -47,10 +47,6 @@ p {
     color: aquamarine;
 }
 
-img {
-    max-width: 100%;
-    max-height: 100%;
-}
 
 .button {
     height: 80px;
@@ -67,9 +63,9 @@ button {
 }
 
 #footer {
-    font-style: cursive;
-    font-size: 15px;
+    font-style: italic;
+    font-size: 20px;
     text-align: center;
-    color: hotpink;
-    font-family: monospace;
+    color: darkgreen;
+    font-family: inherit;
 }
