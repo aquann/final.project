@@ -5,9 +5,6 @@
 .HintText {
     display: none;
 }
-#instructions{
-    
-}
 
 #fin {
    margin-left: 600px;
@@ -65,4 +62,14 @@ button {
     text-align: center;
     color: darkgreen;
     font-family: inherit;
+}
+
+#after_submit {
+    visibility: hidden;
+    background: darkred;
+    width: 400px;
+    border-radius: 20px;
+    margin-left: 600px;
+    float: center;
+    font-size: 30px;
 }

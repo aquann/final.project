@@ -70,10 +70,28 @@ for (let i = 0; i < HintButtons.length; i++) {
 
 }
 
-fin.onclick = function(){
-    console.log(score);
-    g = document.createElement('div');
-    g.setAttribute("id", "Div1").innerText = "Result is " + score;
+ var picture = ["win.gif", "meh.gif", "lose.gif"];
+ var message = ["Great job!", "Just okay", "Do better"];
+fin.onclick = function(){ 
+    console.log(score); 
+    var newElem = document.createElement('div');
+    newElem.setAttribute('id', 'Result');
+    var parent = document.getElementById('container');
     
+    parent.appendChild(newElem);
     
+    document.getElementById("after_submit").style.visibility = "visible";
+    var msg = document.getElementById("message");
+    document.getElementById("number_correct").innerHTML = "You got " + score + " correct."; 
+    var gameoverimg = document.getElementById('picture');
+    if (score < 5) {
+        gameoverimg.src = pictures[2];
+        msg.textContent = messages[2];
+    } else if (score === 5){
+        gameoverimg.src = pictures[1];
+        msg.textContent = messages[1];
+    } else{
+        gameoverimg.src = picture[0];
+        msg.textContent = messages[0];
+    }
 }
