@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+
+<head>
+    <!--Title for page-->
+    <title>Theme Song Quiz Game</title>
+    <meta charset="utf-8">
+    <!--    CSS link-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<!--Header for page-->
+<h1>Theme Song Quiz Game</h1>
+<!--INSTRUCTIONS-->
+<div id="instuctions">
+    <p> <i>To win the quiz game the user must hear multiple theme songs from iconic movies/shows and pair them with their correct GIF. The user has the option of playing back the song as many times as she or he chooses. They also have the option of increasing/decreasing the volume if needed, and can also download the song if they like it enough. After answering all the question they simply need to click submit and wait for their results. To win you need to score 6 and above, 5 and below you lose. Please pause the sound before continueing. Good luck!</i> </p>
+</div>
+
+<!--body content-->
+
+<body>
+
+    <!--   container for all questions-->
+    <div id="container">
+        <div class="question" style="display:block">
+            <!--           audio files-->
+            <audio controls>
+           <source src="music/007-song.mp3" type="audio/mp3"> 
+        </audio>
+            <br>
+            <br>
+            <div class="imgs" id="q0"> </div>
+            <br>
+
+            <!--            container for hints-->
+            <div class="hint">
+                <p class="HintText">Was the top agent of the world</p>
+                <button class="HintButton">Hint</button>
+            </div>
+        </div>
+        <div class="question">
+            <!--           audio files-->
+            <audio controls><source src="music/Panther-song.mp3" type="audio/mp3"> 
+            </audio>
+            <br>
+            <br>
+            <div class="imgs" id="q1"></div>
+            <br>
+            <!--            container for hints-->
+            <div class="hint">
+                <p class="HintText">Was known for being a famous thief</p>
+                <button class="HintButton">Hint</button>
+            </div>
+        </div>
+        <div class="question">
+            <!--           audio files-->
+            <audio controls><source src="music/Pokmon-song.mp3" type="audio/mp3"> 
+            </audio>
+            <br>
+            <br>
+            <div class="imgs" id="q2"></div>
+            <br>
+            <!--            container for hints-->
+            <div class="hint">
+                <p class="HintText">He had to catch them all</p>
+                <button class="HintButton">Hint</button>
+            </div>
+        </div>
+        <div class="question">
+            <!--           audio files-->
+            <audio controls><source src="music/Godfather-song.mp3" type="audio/mp3"> 
+            </audio>
+            <br>
+            <br>
+            <div class="imgs" id="q3"></div>
+            <br>
+            <!--            container for hints-->
+            <div class="hint">
+                <p class="HintText">I'll make you an offer you can't refuse</p>
+                <button class="HintButton">Hint</button>
+            </div>
+        </div>
+        <div class="question">
+            <!--           audio files-->
+            <audio controls><source src="music/Indiana-song.mp3" type="audio/mp3"> 
+            </audio>
+            <br>
+            <br>
+            <div class="imgs" id="q4"></div>
+            <br>
+            <!--            container for hints-->
+            <div class="hint">
+                <p class="HintText">Was the world's leading archaeologist</p>
+                <button class="HintButton">Hint</button>
+            </div>
+        </div>
+        <div class="question">
+            <!--           audio files-->
+            <audio controls><source src="music/Star-song.mp3" type="audio/mp3"> 
+            </audio>
+            <br>
+            <br>
+            <div class="imgs" id="q5"></div>
+            <br>
+            <!--            container for hints-->
+            <div class="hint">
+                <p class="HintText">These aren't the droids you are looking for</p>
+                <button class="HintButton">Hint</button>
+            </div>
+        </div>
+        <div class="question">
+            <!--           audio files-->
+            <audio controls><source src="music/Fresh-song.mp3" type="audio/mp3"> 
+            </audio>
+            <br>
+            <br>
+            <div class="imgs" id="q6"></div>
+            <br>
+            <!--            container for hints-->
+            <div class="hint">
+                <p class="HintText">I was playing some B ball up to know good</p>
+                <button class="HintButton">Hint</button>
+            </div>
+        </div>
+        <div class="question">
+            <!--           audio files-->
+            <audio controls><source src="music/Lion-song.mp3" type="audio/mp3"> 
+            </audio>
+            <br>
+            <br>
+            <div class="imgs" id="q7"></div>
+            <br>
+            <!--            container for hints-->
+            <div class="hint">
+                <p class="HintText">Pretty much the chosen one</p>
+                <button class="HintButton">Hint</button>
+            </div>
+        </div>
+        <div class="question">
+            <!--           audio files-->
+            <audio controls><source src="music/Mission-song.mp3" type="audio/mp3"> 
+            </audio>
+            <br>
+            <br>
+            <div class="imgs" id="q8"></div>
+            <br>
+            <!--            container for hints-->
+            <div class="hint">
+                <p class="HintText">Close relative to Kim Possible</p>
+                <button class="HintButton">Hint</button>
+            </div>
+        </div>
+        <div class="question">
+            <!--           audio files-->
+            <audio controls><source src="music/Myers-song.mp3" type="audio/mp3"> 
+            </audio>
+            <br>
+            <br>
+            <div class="imgs" id="q9"></div>
+            <br>
+            <!--            container for hints-->
+            <div class="hint">
+                <p class="HintText">No matter how how fast you run he'll slow walk and still catch you</p>
+                <button class="HintButton">Hint</button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <!--        container for next button-->
+        <button id="next"> next</button>
+        <!--        container for finish button-->
+        <button id="fin" onclick="function">Submit</button>
+        <!--        container for score-->
+        <div id="after_submit">
+            <p id="number_correct"></p>
+            <p id="message"></p>
+            <img id="picture">
+        </div>
+        <!--        app.js link-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="app.js"></script>
+    </div>
+    <!--    footer-->
+    <div id="footer">
+        <footer>&copy;Vukan and Alexander</footer>
+    </div>
+</body>
+
+</html>

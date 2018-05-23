@@ -1,0 +1,94 @@
+/*to not show next question*/
+
+.question {
+    display: none;
+}
+
+/*to not show next hint*/
+
+.HintText {
+    display: none;
+}
+
+/*finish button*/
+
+#fin {
+    margin-left: 600px;
+}
+
+/*header*/
+
+h1 {
+    letter-spacing: 0px;
+    text-align: center;
+    font-family: 'Courier New';
+    color: darkred;
+    font-size: 55px;
+}
+
+/*body*/
+
+body {
+    background-color: darkgrey;
+    text-align: left;
+    background-size: 100%;
+    
+}
+
+main {
+    text-align: center;
+}
+
+h1 {
+    letter-spacing: 0px;
+    text-align: center;
+    font-family: 'Courier New';
+    color: darkred;
+    font-size: 55px;
+}
+
+h1 span {
+    font-family: 'impact';
+    color: darkviolet;
+    font-size: 35px;
+}
+
+p {
+    text-align: center;
+    font-size: 25px;
+    color: darkslategrey;
+}
+
+.button {
+    height: 80px;
+}
+
+button {
+    background-color: black;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    color: indianred;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    align-content: center;
+    height: 40px;
+}
+
+#footer {
+    font-style: italic;
+    font-size: 20px;
+    text-align: center;
+    color: darkgreen;
+    font-family: inherit;
+}
+
+#after_submit {
+    visibility: hidden;
+    background: darkred;
+    width: 400px;
+    border-radius: 20px;
+    margin-left: 600px;
+    float: center;
+    font-size: 30px;
+}
