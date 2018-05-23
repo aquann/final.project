@@ -1,14 +1,22 @@
-.question{
+/*to not show next question*/
+
+.question {
     display: none;
 }
+
+/*to not show next hint*/
 
 .HintText {
     display: none;
 }
 
+/*finish button*/
+
 #fin {
-   margin-left: 600px;
+    margin-left: 600px;
 }
+
+/*header*/
 
 h1 {
     letter-spacing: 0px;
@@ -17,34 +25,56 @@ h1 {
     color: darkred;
     font-size: 55px;
 }
+
+/*body*/
+
 body {
-    background-color: darkgrey;
+    background-image: url("wood.jpg");
     text-align: left;
     background-size: 100%;
+
 }
+
+/*instructions*/
+
 main {
     text-align: center;
 }
+
+/*header*/
+
 h1 {
-   letter-spacing: 0px;
+    letter-spacing: 0px;
     text-align: center;
     font-family: 'Courier New';
     color: darkred;
     font-size: 55px;
 }
+
+/*header span*/
+
 h1 span {
     font-family: 'impact';
     color: darkviolet;
     font-size: 35px;
 }
+
+/*paragraph*/
+
 p {
     text-align: center;
     font-size: 25px;
     color: darkslategrey;
 }
+
+/*button*/
+
 .button {
     height: 80px;
 }
+
+/*button*/
+
 button {
     background-color: black;
     font-family: 'Quicksand', sans-serif;
@@ -56,6 +86,9 @@ button {
     align-content: center;
     height: 40px;
 }
+
+/*footer*/
+
 #footer {
     font-style: italic;
     font-size: 20px;
@@ -63,6 +96,8 @@ button {
     color: darkgreen;
     font-family: inherit;
 }
+
+/*score*/
 
 #after_submit {
     visibility: hidden;
